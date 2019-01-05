@@ -19,12 +19,12 @@ to obtain a key. Make sure to have the key for the installation section.
 
 * In a terminal, navigate to a folder where you'd like the code to be downloaded. Run
 ```
-git clone <GITHUB_CLONE_URL>
+git clone https://github.com/nickspencer2/apartmentsscraper.git
 ```
 
 * Run
 ```
-cd <RESULTING_DIRECTORY_NAME>
+cd apartmentsscraper
 ```
 
 * Run the below command. This will install the application's dependencies. It might take a little while.
