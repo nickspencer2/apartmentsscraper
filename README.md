@@ -11,9 +11,11 @@ and
 
 * <a href="https://nodejs.org/en/">Node.js</a>
 
+* git
+
 * A Bing Maps API key. You can follow 
 <a href="https://docs.microsoft.com/en-us/bingmaps/rest-services/getting-started-with-the-bing-maps-rest-services">this guide</a>
-to obtain a key. Make sure to have the key for the installation section.
+to obtain a key. Make sure to have the key for the installation section. The key type should be basic and the application type should be Dev/Test.
 
 ## Installation
 
