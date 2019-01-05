@@ -1,68 +1,79 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a desktop application to get information about apartments from apartments.com. 
+It uses 
+<a href="https://github.com/GoogleChromeLabs/carlo" target="blank">Carlo</a>, 
+<a href="https://github.com/facebook/react">React</a>,
+and
+<a href="https://github.com/Microsoft/TypeScript">TypeScript</a>.
 
-## Available Scripts
+# Installation
 
-In the project directory, you can run:
+## Requirements
 
-### `npm start`
+* <a href="https://nodejs.org/en/">Node.js</a>
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+* A Bing Maps API key. You can follow 
+<a href="https://docs.microsoft.com/en-us/bingmaps/rest-services/getting-started-with-the-bing-maps-rest-services">this guide</a>
+to obtain a key. Make sure to have the key for the installation section.
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+## Installation
 
-### `npm test`
+* In a terminal, navigate to a folder where you'd like the code to be downloaded. Run
+```
+git clone <GITHUB_CLONE_URL>
+```
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+* Run
+```
+cd <RESULTING_DIRECTORY_NAME>
+```
 
-### `npm run build`
+* Run the below command. This will install the application's dependencies. It might take a little while.
+```
+npm install
+```
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+* Edit the example.config.json file in the src directory. Inside the quotes on the right side of "bingmapsapikey": paste your Bing Maps API key. Save the file.
+Rename it to config.json (remove the "example." prefix).
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+* Run
+```
+npm start
+```
+to start the application.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+# Usage
 
-### `npm run eject`
+## Starting Screen
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+If everything was successfully installed,
+```
+npm start
+```
+should launch the application and you should see a form asking for work address information.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+This address is used to search apartments.com, and to calculate distance/commute times (hence needing a Bing Maps API key).
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+You could supply any address, it doesn't
+necessarily need to be a work address.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+For example, one could enter the address of the Empire State Building in the form:
 
-## Learn More
+* <b>Address</b>: 20 W 34th St
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+* <b>City</b>: New York
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+* <b>State</b>: NY
 
-### Code Splitting
+* <b>Postal Code</b>: 10001
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+Once you've entered an address to calculate distance from, click the Submit button.
 
-### Analyzing the Bundle Size
+## Results
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+You should see a table with a row for each apartment complex. These will list fields with
+a link to the apartments.com listing, the apartment complex's location, its name, the drive
+duration (in minutes), and its drive distance (in miles). 
 
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+There will also be an <b>Items</b> button, which will take you to a page with the apartment
+complex's listings in a table. Once you're on an apartment complex's page, you can click
+the back button to go back to the table of apartment complexes.

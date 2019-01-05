@@ -1,0 +1,32 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "preserve"
+  },
+  "include": [
+    "src"
+  ],
+  "exclude": [
+    /*Have to exclude this so it doesn't complain about using 'require'.
+    This happens because isolatedModules is true. At the same time,
+    though, we can't turn isolatedModules off because of a
+    "implementation limitation".*/
+    "src/carlomain.js"
+  ]
+}
