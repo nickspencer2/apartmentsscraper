@@ -150,14 +150,19 @@ export class BingMapsClient {
         }
     }
 
-    async apartmentComplexLatLng(apartmentComplex: ApartmentComplexInfo | {location: string}) {
+    async apartmentComplexLatLng(apartmentComplex: ApartmentComplexInfo | {location: string}): Promise<LocationByAddressResponse | undefined> {
         const locationString = apartmentComplex.location;
         const locationSplit = locationString.split(",");
-        return this.getLatLng(
-            locationSplit[0],
-            locationSplit[1],
-            locationSplit[2].split(" ")[0],
-            locationSplit[2].split(" ")[1]
-        );
+        try {
+            return this.getLatLng(
+                locationSplit[0],
+                locationSplit[1],
+                locationSplit[2].split(" ")[0],
+                locationSplit[2].split(" ")[1]
+            );
+        } catch (error) {
+            console.error(`Error getting latLng: ${error}`);
+            console.log(`locationString: ${locationString}`);
+        }
     }
 }

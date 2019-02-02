@@ -33,7 +33,7 @@ export class ApartmentsScraper {
         this.bingMapsClient = bingMapsClient;
     }
 
-    async getApartmentComplexes (city: string, state: string, workLocation: LocationByAddressResponse): Promise<ApartmentComplexInfo[]> {
+    async getApartmentComplexes (city: string, state: string, workLocation: LocationByAddressResponse): Promise<(ApartmentComplexInfo | undefined)[]> {
         const apartmentComplexLinks = await this.getApartmentComplexLinks(city, state);
         const apartmentInfos = apartmentComplexLinks
             .map(async apartmentLink => await this.getApartmentComplexInfo(apartmentLink, workLocation));
@@ -57,7 +57,7 @@ export class ApartmentsScraper {
             .map(apartmentLink => apartmentLink.attribs.href);
     }
 
-    async getApartmentComplexInfo (link: string, workLocation: LocationByAddressResponse): Promise<ApartmentComplexInfo> {
+    async getApartmentComplexInfo (link: string, workLocation: LocationByAddressResponse): Promise<ApartmentComplexInfo | undefined> {
         const options = {
             uri: link,
             transform: (body: any) => cheerio.load(body)
@@ -106,6 +106,7 @@ export class ApartmentsScraper {
         };
         // Get distance to work
         const apartmentComplexLatLng = await this.bingMapsClient.apartmentComplexLatLng(result);
+        if (!apartmentComplexLatLng) return undefined;
         const distanceMatrix = await this.bingMapsClient.apartmentComplexToWorkDistance(apartmentComplexLatLng, workLocation);
         result.driveDuration = distanceMatrix.resourceSets[0].resources[0].results[0].travelDuration;
         result.driveDistance = distanceMatrix.resourceSets[0].resources[0].results[0].travelDistance;

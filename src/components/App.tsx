@@ -51,7 +51,9 @@ class App extends React.Component<Props, State> {
         try {
             const location = this.state.currentLocation;
             const workLocation = await bingMapsClient.getLatLng(location.address, location.city, location.state, location.postalCode);
-            const apartmentComplexes = await apartmentsScraper.getApartmentComplexes(location.city, location.state, workLocation);
+            const apartmentComplexes = (await apartmentsScraper.getApartmentComplexes(location.city, location.state, workLocation))
+                .filter(apartmentComplex => apartmentComplex) // Filter out undefined results
+                .map(apartmentComplex => apartmentComplex!); // Assert that the contents are no longer undefined
             console.log("apartmentComplexes:");
             console.log(apartmentComplexes);
             this.setState({
