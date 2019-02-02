@@ -50,7 +50,9 @@ export class Results extends React.Component<Props, State> {
                     </thead>
 
                     <tbody>
-                        {this.props.results.map(result => <Result key={result.propertyName} result={result} showItems={this.showItems}/>)}
+                        {this.props.results.map((result, index) => 
+                            <Result key={result.propertyName} result={result} showItems={this.showItems} index={index}/>
+                        )}
                     </tbody>
                 </table>
         );
